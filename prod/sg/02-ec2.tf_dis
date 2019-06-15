@@ -1,0 +1,9 @@
+module "ec2_example" {
+  source = "../../modules/ec2"
+  count = 1
+  ami = "ami-0b500ef59d8335eee"
+  subnet_id = "${module.vpc.subnet1_id}"
+  user_data = "${file("user-data.sh")}"
+  tag_name = "TerraformTest"
+  sgid = "${module.vpc.sg_allow_all_id}"
+}
